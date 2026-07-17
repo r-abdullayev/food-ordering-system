@@ -1,0 +1,11 @@
+com\ram\food\ordering\system\domain\value\ProductId.class
+com\ram\food\ordering\system\domain\exception\DomainException.class
+com\ram\food\ordering\system\domain\entity\BaseEntity.class
+com\ram\food\ordering\system\domain\event\DomainEvent.class
+com\ram\food\ordering\system\domain\value\OrderId.class
+com\ram\food\ordering\system\domain\value\Identifier.class
+com\ram\food\ordering\system\domain\value\Money.class
+com\ram\food\ordering\system\domain\value\enums\OrderStatus.class
+com\ram\food\ordering\system\domain\value\CustomerId.class
+com\ram\food\ordering\system\domain\entity\AggregateRoot.class
+com\ram\food\ordering\system\domain\value\RestaurantId.class
