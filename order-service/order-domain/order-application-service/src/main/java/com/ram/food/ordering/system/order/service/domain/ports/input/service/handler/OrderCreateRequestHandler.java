@@ -1,6 +1,5 @@
 package com.ram.food.ordering.system.order.service.domain.ports.input.service.handler;
 
-import com.ram.food.ordering.system.domain.value.OrderId;
 import com.ram.food.ordering.system.order.service.domain.dto.create.CreateOrderRequest;
 import com.ram.food.ordering.system.order.service.domain.dto.create.CreateOrderResponse;
 import com.ram.food.ordering.system.order.service.domain.entity.Customer;
@@ -13,14 +12,13 @@ import com.ram.food.ordering.system.order.service.domain.ports.output.repository
 import com.ram.food.ordering.system.order.service.domain.ports.output.repository.OrderRepository;
 import com.ram.food.ordering.system.order.service.domain.ports.output.repository.RestaurantRepository;
 import com.ram.food.ordering.system.order.service.domain.service.OrderDomainService;
+import java.util.Objects;
+import java.util.Optional;
+import java.util.UUID;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
-
-import java.util.Objects;
-import java.util.Optional;
-import java.util.UUID;
 
 @Slf4j
 @Component
@@ -37,7 +35,8 @@ public class OrderCreateRequestHandler {
     checkCustomer(createOrderRequest.customerId());
     Restaurant restaurant = checkRestaurant(createOrderRequest);
     Order order = OrderMapper.toOrder(createOrderRequest);
-    OrderCreatedEvent orderCreatedEvent = orderDomainService.validateAndInitiateOrder(order, restaurant);
+    OrderCreatedEvent orderCreatedEvent =
+        orderDomainService.validateAndInitiateOrder(order, restaurant);
     Order savedOrder = saveOrder(order);
     log.info("Order with id: {} was created successfully!", savedOrder.getId().value());
     return OrderMapper.toCreateOrderResponse(savedOrder);
@@ -56,7 +55,8 @@ public class OrderCreateRequestHandler {
     Optional<Restaurant> optionalRestaurant = restaurantRepository.findRestaurant(restaurant);
     if (optionalRestaurant.isEmpty()) {
       log.warn("Restaurant with id: {} was not found!", restaurant.getId());
-      throw new OrderDomainException("Restaurant with id: " + restaurant.getId() + " was not found!");
+      throw new OrderDomainException(
+          "Restaurant with id: " + restaurant.getId() + " was not found!");
     }
     return optionalRestaurant.get();
   }
@@ -70,5 +70,4 @@ public class OrderCreateRequestHandler {
     log.info("Order with id: {} was saved successfully!", savedOrder.getId());
     return savedOrder;
   }
-
 }
