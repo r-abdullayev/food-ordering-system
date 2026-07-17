@@ -1,0 +1,14 @@
+package com.ram.food.ordering.system.order.service.domain.dto.message;
+
+import com.ram.food.ordering.system.domain.value.enums.OrderApprovalStatus;
+import java.time.Instant;
+import java.util.List;
+
+public record RestaurantApprovalResponse(
+    String id,
+    String sagaId,
+    String orderId,
+    String restaurantId,
+    Instant createdAt,
+    OrderApprovalStatus paymentStatus,
+    List<String> failureMessages) {}
