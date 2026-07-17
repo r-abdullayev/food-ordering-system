@@ -1,5 +1,6 @@
 package com.ram.food.ordering.system.order.service.domain.ports.input.service.handler;
 
+import com.ram.food.ordering.system.order.service.domain.ApplicationDomainEventPublisher;
 import com.ram.food.ordering.system.order.service.domain.dto.create.CreateOrderRequest;
 import com.ram.food.ordering.system.order.service.domain.dto.create.CreateOrderResponse;
 import com.ram.food.ordering.system.order.service.domain.entity.Customer;
@@ -29,6 +30,7 @@ public class OrderCreateRequestHandler {
   private final OrderRepository orderRepository;
   private final CustomerRepository customerRepository;
   private final RestaurantRepository restaurantRepository;
+  private final ApplicationDomainEventPublisher applicationDomainEventPublisher;
 
   @Transactional
   public CreateOrderResponse createOrder(CreateOrderRequest createOrderRequest) {
@@ -38,6 +40,7 @@ public class OrderCreateRequestHandler {
     OrderCreatedEvent orderCreatedEvent =
         orderDomainService.validateAndInitiateOrder(order, restaurant);
     Order savedOrder = saveOrder(order);
+    applicationDomainEventPublisher.publish(orderCreatedEvent);
     log.info("Order with id: {} was created successfully!", savedOrder.getId().value());
     return OrderMapper.toCreateOrderResponse(savedOrder);
   }
