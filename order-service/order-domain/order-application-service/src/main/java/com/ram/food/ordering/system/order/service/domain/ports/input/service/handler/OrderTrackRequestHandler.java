@@ -2,27 +2,33 @@ package com.ram.food.ordering.system.order.service.domain.ports.input.service.ha
 
 import com.ram.food.ordering.system.order.service.domain.dto.track.TrackOrderRequest;
 import com.ram.food.ordering.system.order.service.domain.dto.track.TrackOrderResponse;
+import com.ram.food.ordering.system.order.service.domain.exception.OrderNotFoundException;
 import com.ram.food.ordering.system.order.service.domain.mapper.OrderMapper;
-import com.ram.food.ordering.system.order.service.domain.ports.output.repository.CustomerRepository;
 import com.ram.food.ordering.system.order.service.domain.ports.output.repository.OrderRepository;
-import com.ram.food.ordering.system.order.service.domain.ports.output.repository.RestaurantRepository;
-import com.ram.food.ordering.system.order.service.domain.service.OrderDomainService;
+import com.ram.food.ordering.system.order.service.domain.value.TrackingId;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Component;
+import org.springframework.transaction.annotation.Transactional;
 
 @Slf4j
 @Component
 @RequiredArgsConstructor
 public class OrderTrackRequestHandler {
 
-  private final OrderDomainService orderDomainService;
   private final OrderRepository orderRepository;
-  private final CustomerRepository customerRepository;
-  private final RestaurantRepository restaurantRepository;
-  private final OrderMapper mapper;
 
+  @Transactional(readOnly = true)
   public TrackOrderResponse trackOrder(TrackOrderRequest trackOrderRequest) {
-    return null;
+    return orderRepository
+        .findByTrackingId(new TrackingId(trackOrderRequest.orderTrackingId()))
+        .map(OrderMapper::toTrackOrderResponse)
+        .orElseThrow(
+            () -> {
+              log.warn(
+                  "Cannot find order with tracking id: {}", trackOrderRequest.orderTrackingId());
+              return new OrderNotFoundException(
+                  "Cannot find order with tracking id: " + trackOrderRequest.orderTrackingId());
+            });
   }
 }

@@ -11,14 +11,13 @@ import com.ram.food.ordering.system.order.service.domain.ports.output.repository
 import com.ram.food.ordering.system.order.service.domain.ports.output.repository.OrderRepository;
 import com.ram.food.ordering.system.order.service.domain.ports.output.repository.RestaurantRepository;
 import com.ram.food.ordering.system.order.service.domain.service.OrderDomainService;
+import java.util.Objects;
+import java.util.Optional;
+import java.util.UUID;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
-
-import java.util.Objects;
-import java.util.Optional;
-import java.util.UUID;
 
 @Component
 @Slf4j
@@ -38,7 +37,9 @@ public class OrderCreateHelper {
     OrderCreatedEvent orderCreatedEvent =
         orderDomainService.validateAndInitiateOrder(order, restaurant);
     saveOrder(order);
-    log.info("Order with id: {} was created successfully!", orderCreatedEvent.getOrder().getId().value());
+    log.info(
+        "Order with id: {} was created successfully!",
+        orderCreatedEvent.getOrder().getId().value());
     return orderCreatedEvent;
   }
 
