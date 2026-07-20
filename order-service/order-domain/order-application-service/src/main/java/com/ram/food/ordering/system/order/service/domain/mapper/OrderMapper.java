@@ -22,7 +22,7 @@ public class OrderMapper {
 
   public Restaurant toRestaurant(CreateOrderRequest createOrderRequest) {
     return Restaurant.builder()
-        .id(new RestaurantId(createOrderRequest.restaurantId()))
+        .restaurantId(new RestaurantId(createOrderRequest.restaurantId()))
         .products(
             createOrderRequest.orderItems().stream()
                 .map(orderItem -> new Product(new ProductId(orderItem.productId())))
@@ -40,10 +40,11 @@ public class OrderMapper {
         .build();
   }
 
-  public CreateOrderResponse toCreateOrderResponse(Order order) {
+  public CreateOrderResponse toCreateOrderResponse(Order order, String message) {
     return CreateOrderResponse.builder()
         .orderTrackingId(order.getId().value())
         .orderStatus(order.getOrderStatus())
+        .message(message)
         .build();
   }
 

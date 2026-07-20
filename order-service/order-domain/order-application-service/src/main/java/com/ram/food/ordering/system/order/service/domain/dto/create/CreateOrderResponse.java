@@ -7,4 +7,4 @@ import lombok.Builder;
 
 @Builder
 public record CreateOrderResponse(
-    @NotNull UUID orderTrackingId, @NotNull OrderStatus orderStatus, @NotNull String messages) {}
+    @NotNull UUID orderTrackingId, @NotNull OrderStatus orderStatus, @NotNull String message) {}
