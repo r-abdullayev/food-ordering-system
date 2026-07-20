@@ -17,7 +17,7 @@ import java.util.stream.Collectors;
 import lombok.extern.slf4j.Slf4j;
 
 @Slf4j
-class OrderDomainServiceImpl implements OrderDomainService {
+public class OrderDomainServiceImpl implements OrderDomainService {
 
   private static final String UTC_ZONE = "UTC";
 
@@ -60,7 +60,7 @@ class OrderDomainServiceImpl implements OrderDomainService {
   private void validateRestaurant(Restaurant restaurant) {
     if (!restaurant.isActive()) {
       throw new OrderDomainException(
-          "Restaurant with id: " + restaurant.getId() + " is currently not active");
+          "Restaurant with id: " + restaurant.getId().value() + " is currently not active");
     }
   }
 

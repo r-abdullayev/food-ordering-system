@@ -25,6 +25,7 @@ public class OrderCreateRequestHandler {
         "Order with id: {} was created successfully!",
         orderCreatedEvent.getOrder().getId().value());
     orderCreatedPaymentRequestMessagePublisher.publish(orderCreatedEvent);
-    return OrderMapper.toCreateOrderResponse(orderCreatedEvent.getOrder());
+    return OrderMapper.toCreateOrderResponse(
+        orderCreatedEvent.getOrder(), "Order created successfully");
   }
 }

@@ -100,7 +100,10 @@ public class Order extends AggregateRoot<OrderId> {
 
     if (!price.equals(orderItemTotal)) {
       throw new OrderDomainException(
-          "Total price: " + price + " is not equal to order items total: " + orderItemTotal);
+          "Total price: "
+              + price.amount()
+              + " is not equal to order items total: "
+              + orderItemTotal.amount());
     }
   }
 
@@ -108,9 +111,9 @@ public class Order extends AggregateRoot<OrderId> {
     if (!orderItem.isPriceValid()) {
       throw new OrderDomainException(
           "Order item price: "
-              + orderItem.getPrice()
+              + orderItem.getPrice().amount()
               + " is not valid for product: "
-              + orderItem.getProduct().getName());
+              + orderItem.getProduct().getId().value());
     }
   }
 
