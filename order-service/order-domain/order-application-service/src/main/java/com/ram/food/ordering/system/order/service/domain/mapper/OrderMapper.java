@@ -7,6 +7,7 @@ import com.ram.food.ordering.system.domain.value.RestaurantId;
 import com.ram.food.ordering.system.order.service.domain.dto.create.CreateOrderRequest;
 import com.ram.food.ordering.system.order.service.domain.dto.create.CreateOrderResponse;
 import com.ram.food.ordering.system.order.service.domain.dto.create.OrderAddress;
+import com.ram.food.ordering.system.order.service.domain.dto.track.TrackOrderResponse;
 import com.ram.food.ordering.system.order.service.domain.entity.Order;
 import com.ram.food.ordering.system.order.service.domain.entity.OrderItem;
 import com.ram.food.ordering.system.order.service.domain.entity.Product;
@@ -43,6 +44,14 @@ public class OrderMapper {
     return CreateOrderResponse.builder()
         .orderTrackingId(order.getId().value())
         .orderStatus(order.getOrderStatus())
+        .build();
+  }
+
+  public TrackOrderResponse toTrackOrderResponse(Order order) {
+    return TrackOrderResponse.builder()
+        .orderTrackingId(order.getTrackingID().value())
+        .orderStatus(order.getOrderStatus())
+        .failureMessages(order.getFailureMessages())
         .build();
   }
 
