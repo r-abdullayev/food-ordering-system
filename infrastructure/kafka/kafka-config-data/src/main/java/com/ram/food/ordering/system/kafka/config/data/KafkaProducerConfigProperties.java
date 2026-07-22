@@ -3,7 +3,7 @@ package com.ram.food.ordering.system.kafka.config.data;
 import org.springframework.boot.context.properties.ConfigurationProperties;
 
 @ConfigurationProperties(prefix = "kafka-producer-config")
-public record KafkaProducerConfigData(
+public record KafkaProducerConfigProperties(
     String keySerializerClass,
     String valueSerializerClass,
     String compressionType,
