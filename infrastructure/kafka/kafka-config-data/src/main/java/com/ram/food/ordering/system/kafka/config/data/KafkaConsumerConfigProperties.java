@@ -3,7 +3,7 @@ package com.ram.food.ordering.system.kafka.config.data;
 import org.springframework.boot.context.properties.ConfigurationProperties;
 
 @ConfigurationProperties(prefix = "kafka-consumer-config")
-public record KafkaConsumerConfigData(
+public record KafkaConsumerConfigProperties(
     String keyDeserializer,
     String valueDeserializer,
     String autoOffsetReset,
