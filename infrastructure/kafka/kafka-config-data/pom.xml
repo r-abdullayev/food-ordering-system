@@ -3,17 +3,22 @@
     <modelVersion>4.0.0</modelVersion>
     <parent>
         <groupId>com.ram.food-ordering-system</groupId>
-        <artifactId>order-service</artifactId>
+        <artifactId>kafka</artifactId>
         <version>0.0.1-SNAPSHOT</version>
     </parent>
-    <artifactId>order-messaging</artifactId>
-    <name>order-messaging</name>
+    <artifactId>kafka-config-data</artifactId>
+    <name>kafka-config-data</name>
     <url>http://maven.apache.org</url>
 
     <dependencies>
         <dependency>
-            <groupId>com.ram.food-ordering-system</groupId>
-            <artifactId>order-application-service</artifactId>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-test</artifactId>
+            <scope>test</scope>
         </dependency>
     </dependencies>
 </project>

@@ -3,17 +3,10 @@
     <modelVersion>4.0.0</modelVersion>
     <parent>
         <groupId>com.ram.food-ordering-system</groupId>
-        <artifactId>order-service</artifactId>
+        <artifactId>kafka</artifactId>
         <version>0.0.1-SNAPSHOT</version>
     </parent>
-    <artifactId>order-messaging</artifactId>
-    <name>order-messaging</name>
+    <artifactId>kafka-model</artifactId>
+    <name>kafka-model</name>
     <url>http://maven.apache.org</url>
-
-    <dependencies>
-        <dependency>
-            <groupId>com.ram.food-ordering-system</groupId>
-            <artifactId>order-application-service</artifactId>
-        </dependency>
-    </dependencies>
 </project>

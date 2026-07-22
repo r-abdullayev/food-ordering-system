@@ -7,6 +7,6 @@
         <version>0.0.1-SNAPSHOT</version>
     </parent>
     <artifactId>common-domain</artifactId>
-    <name>Archetype - common-domain</name>
+    <name>common-domain</name>
     <url>http://maven.apache.org</url>
 </project>

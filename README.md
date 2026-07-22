@@ -8,6 +8,9 @@ refactor/{scope}         - refactor/order-mapper-cleanup
 chore/{task-description} - chore/update-dependencies
 docs/{doc-topic}         - docs/readme-setup
 test/{test-scope}        - test/order-service-integration-tests
+ci/{pipeline-task}       - ci/github-actions-cache
+infra/{infrastructure}   - infra/terraform-vpc
+perf/{optimization}      - perf/reduce-query-latency
 ```
 - kebab-case, lowercase, no spaces, no special characters
 - keep it short but descriptive (3-5 words max)
