@@ -8,7 +8,7 @@
     </parent>
     <artifactId>common</artifactId>
     <packaging>pom</packaging>
-    <name>Archetype - common</name>
+    <name>common</name>
     <url>http://maven.apache.org</url>
     <modules>
         <module>common-domain</module>

@@ -7,7 +7,7 @@
         <version>0.0.1-SNAPSHOT</version>
     </parent>
     <artifactId>order-application</artifactId>
-    <name>Archetype - order-application</name>
+    <name>order-application</name>
     <url>http://maven.apache.org</url>
 
     <dependencies>
